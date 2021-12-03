@@ -36,8 +36,6 @@ try {
 	//~ PART 2
 	console.log("\n\nPart2");
 	
-	var done=false;
-	
 	function reduceValues(data, selectionFunction, index) {
 		if (data.length == 1) {
 			return data[0];
