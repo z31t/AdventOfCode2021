@@ -37,34 +37,21 @@ try {
 	console.log("\n\nPart2");
 	
 	var done=false;
-	var values = data;
-	var i=0;
-	while(!done) {
-		var split = mapToIndex(values, i);
-		values = (split["0"].length > split["1"].length)? split["0"] : split["1"];
-		if (values.length == 1) {
-			done = true;
+	
+	function reduceValues(data, selectionFunction, index) {
+		if (data.length == 1) {
+			return data[0];
 		}
+		index = index || 0;
 		
-		i++;
+		var split = mapToIndex(data, index);
+		return reduceValues(selectionFunction(split), selectionFunction, index+1);
 	}
-	var oxygen = values[0];
+	
+	var oxygen = reduceValues(data, map=>(map["0"].length > map["1"].length)? map["0"] : map["1"]);
 	console.log("oxygen: %d", oxygen);
 	
-	
-	done=false;
-	values = data;
-	i=0;
-	while(!done) {
-		var split = mapToIndex(values, i);
-		values = (split["0"].length <= split["1"].length)? split["0"] : split["1"];
-		if (values.length == 1) {
-			done = true;
-		}
-		
-		i++;
-	}
-	var co2 = values[0];
+	var co2 = reduceValues(data, map=>(map["0"].length <= map["1"].length)? map["0"] : map["1"]);
 	console.log("co2: %d", co2);
 
 	console.log("oxygen int: %d", parseInt(oxygen, 2));
