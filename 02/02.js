@@ -28,6 +28,8 @@ try {
 			}
 		} 
 	});
+	
+	
 	console.log("Depth: " + values.depth);
 	console.log("Horizontal: " + values.horizontal);
 	console.log("Multiplied: " + (values.horizontal * values.depth));
